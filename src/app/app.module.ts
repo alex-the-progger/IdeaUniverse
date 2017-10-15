@@ -4,22 +4,47 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { SignInPage } from '../pages/sign-in/sign-in';
+import { SignUpPage } from '../pages/sign-up/sign-up';
+import { SignedInPage } from '../pages/signed-in/signed-in';
+import { StartupPage } from '../pages/startup/startup';
+
+const firebaseAuth = {
+  apiKey: "AIzaSyCibLLONtbvyoO4KuXKRApMxQPTNL3Rllw",
+  authDomain: "ideauniverse-fa0bc.firebaseapp.com",
+  databaseURL: "https://ideauniverse-fa0bc.firebaseio.com",
+  projectId: "ideauniverse-fa0bc",
+  storageBucket: "ideauniverse-fa0bc.appspot.com",
+  messagingSenderId: "664017317970"
+};
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    SignInPage,
+    SignUpPage,
+    SignedInPage,
+    StartupPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseAuth),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    SignInPage,
+    SignUpPage,
+    SignedInPage,
+    StartupPage
   ],
   providers: [
     StatusBar,
