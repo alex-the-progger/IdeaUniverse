@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { StartupPage } from '../startup/startup';
+ 
+
 
 /**
  * Generated class for the SignedInPage page.
@@ -16,7 +18,7 @@ import { StartupPage } from '../startup/startup';
   templateUrl: 'signed-in.html',
 })
 export class SignedInPage {
-  
+
   startups: Object[] = [];
   startupsSubscription;
 
@@ -50,7 +52,16 @@ export class SignedInPage {
         },
         {
           name: "description",
-          placeholder: "Description"
+          placeholder: "Description",
+          type:"text"
+        },
+        {
+           name:"imgUrl",
+           placeholder: "image url"
+        },
+        {
+         name:"userEmai",
+         value: this.navParams.get("userEmail")
         }
       ],
       buttons: [
@@ -63,8 +74,19 @@ export class SignedInPage {
     }).present();
   }
   
+  onDeleteStartupClick(startup){
+  this.navParams.get("userEmail")
+  }
+
+
+  onDeleteStartup(){
+  var list= this.fireDb.database.ref();
+  var element=list.child
+   }
+
   addStartup(data) {
     console.log("Saved clicked");
-    this.fireDb.list("startups").push(data);
+  var item=  this.fireDb.list("startups").push(data);
+  var key =item.key;
   }
 }

@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Behold!</ion-title>
+    <ion-title>Ideas list!</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -11,14 +11,17 @@
 <ion-content padding>
   
   <ion-list>
-    <ion-item *ngFor="let startup of startups">
+    <ion-item *ngFor="let startup of startups" class="item">
       <!--ion-avatar item-start>
         <img src="img/avatar-finn.png">
       </ion-avatar-->
-      <h2>{{startup.name}}</h2>
+      <p></p>
+      <h1 (click)="onViewStartupClick(startup)">{{startup.name}}</h1>
+      <img class="central-img" src="{{startup.imgUrl}}" (click)="onViewStartupClick(startup)"/>
       <!--h3>Don't Know What To Do!</h3-->
-      <p>{{startup.description}}</p>
-      <button ion-button clear item-end (click)="onViewStartupClick(startup)">View</button>
+      <p class="description">{{startup.description}} (click)="onViewStartupClick(startup)"</p>
+      <button ion-button color="secondary"  (click)="onUpdateStartup()">Update</button>
+      <button ion-button color="danger"  (click)="onDeleteStartup(startup.key)">Delete</button>
     </ion-item>
   </ion-list>
   
@@ -28,7 +31,7 @@
   </div-->
 
   <ion-fab right bottom>
-    <button ion-fab color="light" (click)="onAddStartupClick()"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="red" (click)="onAddStartupClick()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
 </ion-content>

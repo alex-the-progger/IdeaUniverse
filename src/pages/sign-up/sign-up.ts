@@ -35,20 +35,20 @@ export class SignUpPage {
       }).present();
   }
   
-  validateUserName(userName) {
+ /* validateUserName(userName) {
     if (!/^[a-zA-Z0-9]+$/.test(userName)) {
       this.alert("Error", "User name can contain only english letters and digits.");
       return false;
     }
     return true;
   }
-  
+  */
   signUp() {
     let userName = this.userName.value;
-    if (!this.validateUserName(userName)) {
+  /*  if (!this.validateUserName(userName)) {
       return;
     }
-    userName = userName + "@domain.com";
+    userName = userName + "@domain.com";*/
     let password = this.password.value;
     let confirmPassword = this.confirmPassword.value;
     
@@ -64,6 +64,9 @@ export class SignUpPage {
   signUpCallback(data) {
     this.alert("Success", "You were successfully registered.");
     this.navCtrl.setRoot(SignedInPage);
+    this.navCtrl.push(SignedInPage, {
+      "userEmail": data.email
+    });
   }
   
   onSignUpError(error) {

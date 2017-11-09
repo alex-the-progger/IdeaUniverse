@@ -11,13 +11,16 @@ import { SignUpPage } from '../sign-up/sign-up';
  * Ionic pages and navigation.
  */
 
+
+
+
 @IonicPage()
 @Component({
   selector: 'page-sign-in',
   templateUrl: 'sign-in.html',
 })
 export class SignInPage {
-  
+
   @ViewChild("userName") userName;
   @ViewChild("password") password;
 
@@ -27,46 +30,50 @@ export class SignInPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignInPage');
   }
-  
+
   alert(title: string, subTitle: string) {
     this.alertCtrl.create({
-        title: title,
-        subTitle: subTitle,
-        buttons: ["OK"]
-      }).present();
+      title: title,
+      subTitle: subTitle,
+      buttons: ["OK"]
+    }).present();
   }
-  
-  validateUserName(userName) {
+
+ /* validateUserName(userName) {
     if (!/^[a-zA-Z0-9]+$/.test(userName)) {
       this.alert("Error", "User name can contain only english letters and digits.");
       return false;
     }
     return true;
-  }
-  
+  }*/
+
   signIn() {
     let userName = this.userName.value;
-    if (!this.validateUserName(userName)) {
+  /*  if (!this.validateUserName(userName)) {
       return;
     }
-    userName = userName + "@domain.com";
+    userName = userName + "@domain.com";*/
     let password = this.password.value;
-    
+
     this.fire.auth.signInWithEmailAndPassword(userName, password)
       .then(this.signInCallback.bind(this))
       .catch(this.signInError.bind(this));
   }
-  
+
   signInCallback(data) {
     this.alert("Success", "You are successfully signed in.");
     this.navCtrl.setRoot(SignedInPage);
+    this.navCtrl.push(SignedInPage, {
+      "userEmail": data.email
+    });
   }
-  
+
   signInError(error) {
     this.alert("Error", error.message);
   }
-  
+
   signUp() {
     this.navCtrl.push(SignUpPage);
   }
 }
+

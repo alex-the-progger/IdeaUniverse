@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireDatabase } from 'angularfire2/database';
+import {SignedInPage} from '../signed-in/signed-in';
 
 /**
  * Generated class for the StartupPage page.
@@ -15,14 +17,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class StartupPage {
   
-  startup: Object;
+  public startup: Object;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public fireDb: AngularFireDatabase) {
     this.startup = navParams.get("startup");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StartupPage');
   }
-
 }

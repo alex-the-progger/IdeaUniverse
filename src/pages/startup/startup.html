@@ -7,12 +7,21 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{startup.name}}</ion-title>
+    <ion-title class="startup-title">{{startup.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content padding class="project-description">
+  <p>{{startup.userEmail}}</p>
+  <img src="{{startup.imgUrl}}">
+  <p>Created by:</p>
+  <h4>{{startup.userEmai}}</h4>
+  <br/>
 
-<ion-content padding>
-  {{startup.description}}
+  <p>{{startup.description}}</p>
+
+  <div>
+
+  </div>
 </ion-content>
