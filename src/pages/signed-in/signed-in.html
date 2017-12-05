@@ -17,11 +17,12 @@
       </ion-avatar-->
       <p></p>
       <h1 (click)="onViewStartupClick(startup)">{{startup.name}}</h1>
-      <img class="central-img" src="{{startup.imgUrl}}" (click)="onViewStartupClick(startup)"/>
+      <img  src="./assets/img/pre.png" alt="" (load)="loaded = false" [hidden]="loaded">
+      <img class="central-img" src="{{startup.imgUrl}}" (load)="loaded = true" (click)="onViewStartupClick(startup)"/>
       <!--h3>Don't Know What To Do!</h3-->
-      <p class="description">{{startup.description}} (click)="onViewStartupClick(startup)"</p>
-      <button ion-button color="secondary"  (click)="onUpdateStartup()">Update</button>
-      <button ion-button color="danger"  (click)="onDeleteStartup(startup.key)">Delete</button>
+      <p class="description" (click)="onViewStartupClick(startup)">{{startup.description}}</p>
+      <button ion-button color="secondary" (click)=onUpdateStartupClick(startup)>Update</button>
+      <button ion-button color="danger"  (click)="onDeleteStartupClick(startup)">Delete</button>
     </ion-item>
   </ion-list>
   

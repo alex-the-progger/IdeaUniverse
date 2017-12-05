@@ -41,52 +41,70 @@ export class SignedInPage {
     });
   }
   
-  onAddStartupClick() {
+  getItemKey(item: Object) {
+    var keys = this.startupsSubscription._subscriptions[0]._subscriptions[0].key;
+    var index = this.startups.indexOf(item);
+    return keys[index].key;
+  }
+  
+  generateKey() : string {
+    return Math.random().toString(36).slice(2);
+  }
+  
+  showDataAlert(item: Object, handler: FunctionStringCallback) {
     this.alertCtrl.create({
       title: "Enter parameters",
       message: "Enter a name and description of your startup",
       inputs: [
         {
           name: "name",
-          placeholder: "Name"
+          placeholder: "Name",
+          value: item ? item.name : ""
         },
         {
           name: "description",
           placeholder: "Description",
-          type:"text"
+          type:"text",
+          value: item ? item.description : ""
         },
         {
            name:"imgUrl",
-           placeholder: "image url"
+           placeholder: "image url",
+           value: item ? item.imgUrl : ""
         },
         {
          name:"userEmai",
-         value: this.navParams.get("userEmail")
+         value: item ? item.userEmai : this.navParams.get("userEmail")
         }
       ],
       buttons: [
         {text: "Cancel"},
         {
           text: "Save",
-          handler: this.addStartup.bind(this)
+          handler: handler
         }
       ]
     }).present();
   }
   
-  onDeleteStartupClick(startup){
-  this.navParams.get("userEmail")
+  onAddStartupClick() {
+    this.showDataAlert(null, this.addStartup.bind(this));
+  }
+  
+  onUpdateStartupClick(item: Object) {
+    var key = this.getItemKey(item);
+    this.showDataAlert(item, function(data) {
+      this.fireDb.object("startups/" + key).update(data);
+    }.bind(this));
   }
 
-
-  onDeleteStartup(){
-  var list= this.fireDb.database.ref();
-  var element=list.child
+  onDeleteStartupClick(item: Object) {
+    var key = this.getItemKey(item);
+    this.fireDb.list("startups").remove(key);
    }
 
   addStartup(data) {
     console.log("Saved clicked");
-  var item=  this.fireDb.list("startups").push(data);
-  var key =item.key;
+    this.fireDb.list("startups").push(data);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { FirebaseApp } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { SignedInPage } from '../signed-in/signed-in';
 import { SignUpPage } from '../sign-up/sign-up';
@@ -18,6 +19,7 @@ import { SignUpPage } from '../sign-up/sign-up';
 @Component({
   selector: 'page-sign-in',
   templateUrl: 'sign-in.html',
+  providers: [AngularFireAuth]
 })
 export class SignInPage {
 
