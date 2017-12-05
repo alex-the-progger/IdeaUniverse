@@ -14,7 +14,8 @@
 
 <ion-content padding class="project-description">
   <p>{{startup.userEmail}}</p>
-  <img src="{{startup.imgUrl}}">
+  <ion-icon name="image" (load)="startup.loaded = false" [hidden]="startup.loaded"></ion-icon>
+  <img src="{{startup.imgUrl}}" (load)="startup.loaded = true" [hidden]="!startup.loaded">
   <p>Created by:</p>
   <h4>{{startup.userEmai}}</h4>
   <br/>

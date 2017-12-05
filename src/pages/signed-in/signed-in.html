@@ -17,8 +17,8 @@
       </ion-avatar-->
       <p></p>
       <h1 (click)="onViewStartupClick(startup)">{{startup.name}}</h1>
-      <img  src="./assets/img/pre.png" alt="" (load)="loaded = false" [hidden]="loaded">
-      <img class="central-img" src="{{startup.imgUrl}}" (load)="loaded = true" (click)="onViewStartupClick(startup)"/>
+      <ion-icon name="image" (load)="startup.loaded = false" [hidden]="startup.loaded" (click)="onViewStartupClick(startup)"></ion-icon>
+      <img class="central-img" src="{{startup.imgUrl}}" (load)="startup.loaded = true" [hidden]="!startup.loaded" (click)="onViewStartupClick(startup)"/>
       <!--h3>Don't Know What To Do!</h3-->
       <p class="description" (click)="onViewStartupClick(startup)">{{startup.description}}</p>
       <button ion-button color="secondary" (click)=onUpdateStartupClick(startup)>Update</button>

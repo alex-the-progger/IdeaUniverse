@@ -64,10 +64,12 @@ export class SignInPage {
 
   signInCallback(data) {
     this.alert("Success", "You are successfully signed in.");
-    this.navCtrl.setRoot(SignedInPage);
-    this.navCtrl.push(SignedInPage, {
+    this.navCtrl.setRoot(SignedInPage, {
       "userEmail": data.email
     });
+    /*this.navCtrl.push(SignedInPage, {
+      "userEmail": data.email
+    });*/
   }
 
   signInError(error) {

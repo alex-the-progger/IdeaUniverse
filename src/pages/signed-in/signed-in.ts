@@ -51,7 +51,7 @@ export class SignedInPage {
     return Math.random().toString(36).slice(2);
   }
   
-  showDataAlert(item: Object, handler: FunctionStringCallback) {
+  showDataAlert(item: Startup, handler: FunctionStringCallback) {
     this.alertCtrl.create({
       title: "Enter parameters",
       message: "Enter a name and description of your startup",
@@ -91,14 +91,14 @@ export class SignedInPage {
     this.showDataAlert(null, this.addStartup.bind(this));
   }
   
-  onUpdateStartupClick(item: Object) {
+  onUpdateStartupClick(item: Startup) {
     var key = this.getItemKey(item);
     this.showDataAlert(item, function(data) {
       this.fireDb.object("startups/" + key).update(data);
     }.bind(this));
   }
 
-  onDeleteStartupClick(item: Object) {
+  onDeleteStartupClick(item: Startup) {
     var key = this.getItemKey(item);
     this.fireDb.list("startups").remove(key);
    }
@@ -106,5 +106,19 @@ export class SignedInPage {
   addStartup(data) {
     console.log("Saved clicked");
     this.fireDb.list("startups").push(data);
+  }
+}
+
+class Startup {
+  public name: string;
+  public description: string;
+  public imgUrl: string;
+  public userEmai: string;
+  
+  constructor(name: string, description: string, imgUrl: string, userEmai: string) {
+    this.name = name;
+    this.description = description;
+    this.imgUrl = imgUrl;
+    this.userEmai = userEmai;
   }
 }
